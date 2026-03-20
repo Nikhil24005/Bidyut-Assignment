@@ -7,11 +7,19 @@ import taskRoutes from './routes/taskRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Parse CORS origins from environment variable
+const corsOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+  : 'http://localhost:5173';
+
 // Connect to MongoDB
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: corsOrigins,
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes
@@ -19,7 +27,10 @@ app.use('/api', taskRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'Server is running' });
+  res.status(200).json({ 
+    status: 'Server is running',
+    environment: process.env.NODE_ENV,
+  });
 });
 
 // Error handling middleware
@@ -36,6 +47,6 @@ app.use((req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`✓ Task Manager API running on http://localhost:${PORT}`);
-  console.log(`✓ CORS enabled`);
+  console.log(`✓ CORS enabled for: ${corsOrigins}`);
   console.log(`✓ Database connected`);
 });
