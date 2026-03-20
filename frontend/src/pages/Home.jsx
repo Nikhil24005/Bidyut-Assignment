@@ -64,7 +64,7 @@ const Home = () => {
       const response = await taskAPI.toggleTaskStatus(id);
 
       if (response.success) {
-        setTasks(tasks.map((task) => (task.id === id ? response.data : task)));
+        setTasks(tasks.map((task) => (task._id === id ? response.data : task)));
         showNotification(
           `Task marked as ${response.data.status}!`,
           'success'
@@ -83,7 +83,7 @@ const Home = () => {
       const response = await taskAPI.deleteTask(id);
 
       if (response.success) {
-        setTasks(tasks.filter((task) => task.id !== id));
+        setTasks(tasks.filter((task) => task._id !== id));
         showNotification('Task deleted successfully!', 'success');
       }
     } catch (error) {
@@ -99,7 +99,7 @@ const Home = () => {
       const response = await taskAPI.updateTask(id, title, description);
 
       if (response.success) {
-        setTasks(tasks.map((task) => (task.id === id ? response.data : task)));
+        setTasks(tasks.map((task) => (task._id === id ? response.data : task)));
         showNotification('Task updated successfully!', 'success');
       }
     } catch (error) {

@@ -21,6 +21,8 @@ A modern, production-ready Task Manager application built with React, Vite, Tail
 ### Backend
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB ODM
 - **CORS** - Cross-origin resource sharing
 - **ES Modules** - Modern JavaScript
 
@@ -86,7 +88,19 @@ cd backend
 npm install
 ```
 
-3. Start the backend server:
+3. **Setup MongoDB:**
+   - Install MongoDB locally OR
+   - Use MongoDB Atlas (cloud) - [Get free account](https://www.mongodb.com/cloud/atlas)
+
+4. Configure `.env`:
+```env
+PORT=5000
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
+MONGODB_URI=mongodb://localhost:27017/task-manager
+```
+
+5. Start the backend server:
 ```bash
 npm start
 ```
@@ -96,7 +110,14 @@ Or for development with auto-reload:
 npm run dev
 ```
 
+6. (Optional) Seed sample data:
+```bash
+npm run seed
+```
+
 The backend will run on `http://localhost:5000`
+
+**For detailed MongoDB setup, see [DATABASE.md](backend/DATABASE.md)**
 
 ### Frontend Setup
 

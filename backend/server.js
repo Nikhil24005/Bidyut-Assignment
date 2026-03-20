@@ -1,9 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import 'dotenv/config';
+import connectDB from './config/database.js';
 import taskRoutes from './routes/taskRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Connect to MongoDB
+connectDB();
 
 // Middleware
 app.use(cors());
@@ -32,4 +37,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`✓ Task Manager API running on http://localhost:${PORT}`);
   console.log(`✓ CORS enabled`);
+  console.log(`✓ Database connected`);
 });

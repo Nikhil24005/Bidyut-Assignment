@@ -40,7 +40,7 @@ const TaskList = ({ tasks, onToggle, onDelete, onEdit, isLoading, isLoaded }) =>
           <div>
             {pendingTasks.map((task) => (
               <TaskItem
-                key={task.id}
+                key={task._id}
                 task={task}
                 onToggle={onToggle}
                 onDelete={onDelete}
@@ -64,7 +64,7 @@ const TaskList = ({ tasks, onToggle, onDelete, onEdit, isLoading, isLoaded }) =>
           <div>
             {completedTasks.map((task) => (
               <TaskItem
-                key={task.id}
+                key={task._id}
                 task={task}
                 onToggle={onToggle}
                 onDelete={onDelete}

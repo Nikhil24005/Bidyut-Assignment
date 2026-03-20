@@ -22,7 +22,7 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit, isLoading }) => {
   };
 
   const isCompleted = task.status === 'completed';
-  const createdDate = new Date(task.created_at).toLocaleDateString('en-US', {
+  const createdDate = new Date(task.createdAt).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
