@@ -12,12 +12,12 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit, isLoading }) => {
       return;
     }
 
-    onEdit(task.id, editTitle.trim(), editDescription.trim());
+    onEdit(task._id, editTitle.trim(), editDescription.trim());
     setIsEditing(false);
   };
 
   const handleDeleteConfirm = () => {
-    onDelete(task.id);
+    onDelete(task._id);
     setShowDeleteConfirm(false);
   };
 
@@ -102,7 +102,7 @@ const TaskItem = ({ task, onToggle, onDelete, onEdit, isLoading }) => {
           <input
             type="checkbox"
             checked={isCompleted}
-            onChange={() => onToggle(task.id)}
+            onChange={() => onToggle(task._id)}
             disabled={isLoading}
             className="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer disabled:cursor-not-allowed"
           />
