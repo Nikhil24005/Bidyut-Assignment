@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import Task from './models/Task.js';
-import connectDB from './config/database.js';
+import Task from '../models/Task.js';
+import connectDB from '../config/database.js';
 
 const seedDatabase = async () => {
   try {
