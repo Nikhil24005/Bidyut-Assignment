@@ -31,6 +31,23 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: 'Task Manager API',
+    endpoints: [
+      'GET /health - Health check',
+      'GET /api/tasks - Get all tasks',
+      'GET /api/tasks/:id - Get task by ID',
+      'POST /api/tasks - Create new task',
+      'PUT /api/tasks/:id - Update task',
+      'PATCH /api/tasks/:id/toggle - Toggle task status',
+      'DELETE /api/tasks/:id - Delete task',
+    ],
+    environment: process.env.NODE_ENV,
+  });
+});
+
 // Routes
 app.use('/api', taskRoutes);
 
@@ -40,6 +57,7 @@ app.get('/health', (req, res) => {
     status: 'Server is running',
     environment: process.env.NODE_ENV,
     timestamp: new Date().toISOString(),
+    mongodb: 'Connected',
   });
 });
 
